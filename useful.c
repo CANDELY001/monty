@@ -31,7 +31,7 @@ ssize_t _getline(char **line, size_t *line_length, FILE *file)
 			*line = new_buffer;
 		}
 		(*line)[read_bytes++] = c;
-		if (c == '\n' || c == '\t' || c == '\r')
+		if (c == '\n')
 			break;
 	}
 	if (read_bytes + 1 >= (ssize_t) buffer_size)
