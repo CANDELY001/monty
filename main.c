@@ -9,42 +9,42 @@
 int main(int ac, char **av)
 {
 	FILE *file = fopen(av[1], "r");
-	int index = 0;
+	int i;
 	char *l = NULL;
 	char *opcode = NULL;
 	stack_t *stack = NULL;
-	size_t l_length = 0;
-	unsigned int l_number = 1;
+	size_t line_len = 0;
+	unsigned int line_n = 1;
 	instruction_t command[] = {
-		{"push", _push}, {"pall", _pall},
-	       	{"pint", _pint}, {"pop", _pop}, 
-		{"swap", _swap}, {"add", _add}, 
+		{"push", _push}, {"pall", _pall}, {"pint", _pint},
+		{"pop", _pop}, {"swap", _swap}, {"add", _add},
 		{"nop", _nop}, {NULL, NULL}
 	};
 
 	check(ac, av, file);
-	while (_getline(&l, &l_length, file) != -1 && !feof(file))
+	while (_getline(&l, &line_len, file) != -1 && !feof(file))
 	{
-		opcode = strtok(l, " \n\t\r");
-		if (opcode == NULL || opcode[0] == '#')
+		opcode = strtok(l, " \n");
+		if (opcode == NULL)
 		{
-			l_number++;
+			line_n++;
 			continue;
 		}
-		for (; command[index].opcode; index++)
+		for (i = 0; command[i].opcode != NULL; i++)
 		{
-			if (strcmp(opcode, command[index].opcode) == 0)
+			if (strcmp(opcode, command[i].opcode) == 0)
 			{
-				command[index].f(&stack, l_number);
+				command[i].f(&stack, line_n);
 				break;
 			}
 		}
-		if (command[index].opcode == NULL)
+		if (command[i].opcode == NULL)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", l_number, opcode);
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_n, opcode);
 			exit(EXIT_FAILURE);
-		} l_number++;
-	} free(l);
+		} line_n++;
+	}
+	free(l);
 	free_s(stack);
 	fclose(file);
 	return (0);
