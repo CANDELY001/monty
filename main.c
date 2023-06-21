@@ -6,7 +6,7 @@
  * @av: parameter
  * Return: result
  */
-int main(int ac, char *av[])
+int main(int ac, char **av)
 {
 	FILE *file = fopen(av[1], "r");
 	int index = 0;
@@ -28,7 +28,7 @@ int main(int ac, char *av[])
 			l_number++;
 			continue;
 		}
-		for (; command[index].opcode != NULL; index++)
+		for (; command[index].opcode; index++)
 		{
 			if (strcmp(opcode, command[index].opcode) == 0)
 			{
