@@ -16,13 +16,16 @@ int main(int ac, char **av)
 	size_t l_length = 0;
 	unsigned int l_number = 1;
 	instruction_t command[] = {
-		{"push", _push}, {"pall", _pall}, {"pint", _pint}, {NULL, NULL}
+		{"push", _push}, {"pall", _pall},
+	       	{"pint", _pint}, {"pop", _pop}, 
+		{"swap", _swap}, {"add", _add}, 
+		{"nop", _nop}, {NULL, NULL}
 	};
 
 	check(ac, av, file);
 	while (_getline(&l, &l_length, file) != -1 && !feof(file))
 	{
-		opcode = strtok(l, " \t\n");
+		opcode = strtok(l, " \n\t\r");
 		if (opcode == NULL || opcode[0] == '#')
 		{
 			l_number++;
