@@ -18,7 +18,7 @@ int main(int ac, char **av)
 	instruction_t command[] = {
 		{"push", _push}, {"pall", _pall}, {"pint", _pint},
 		{"pop", _pop}, {"swap", _swap}, {"add", _add},
-		{"nop", _nop}, {NULL, NULL}
+		{"nop", _nop}, {"sub", _sub},  {NULL, NULL}
 	};
 
 	check(ac, av, file);
