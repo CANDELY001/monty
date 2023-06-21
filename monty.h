@@ -45,5 +45,5 @@ int is_num(char *s);
 void check(int ac, char *av[], FILE *file);
 void free_s(stack_t *head);
 ssize_t _getline(char **line, size_t *line_length, FILE *file);
-
+void _pint(stack_t **stack, __attribute__ ((unused))unsigned int line_n);
 #endif

@@ -16,7 +16,7 @@ int main(int ac, char *av[])
 	size_t l_length = 0;
 	unsigned int l_number = 1;
 	instruction_t command[] = {
-		{"push", _push}, {"pall$", _pall}, {NULL, NULL}
+		{"push", _push}, {"pall", _pall}, {"pint", _pint}, {NULL, NULL}
 	};
 
 	check(ac, av, file);
@@ -28,14 +28,13 @@ int main(int ac, char *av[])
 			l_number++;
 			continue;
 		}
-		while (command[index].opcode != NULL)
+		for (; command[index].opcode != NULL; index++)
 		{
 			if (strcmp(opcode, command[index].opcode) == 0)
 			{
 				command[index].f(&stack, l_number);
 				break;
 			}
-			index++;
 		}
 		if (command[index].opcode == NULL)
 		{
