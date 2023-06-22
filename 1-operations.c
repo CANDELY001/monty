@@ -33,7 +33,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	char *argument;
 	stack_t *new_node = malloc(sizeof(stack_t));
 
-	argument = strtok(NULL, " ");
+	argument = strtok(NULL, " \n\t ");
 	if (!argument)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
