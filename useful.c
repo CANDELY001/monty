@@ -8,44 +8,17 @@
  */
 ssize_t _getline(char **line, size_t *line_length, FILE *file)
 {
-	ssize_t read_bytes = 0;
-	size_t buffer_size = 0;
-	char *new_buffer;
-	int c;
+ssize_t read_bytes = getline(line, line_length, file);
 
-	if (line == NULL || line_length == NULL)
-		return (-1);
-	if (*line != NULL)
+	if (read_bytes == -1)
 	{
-		free(*line);
-		*line = NULL;
+		if (feof(file))
+			clearerr(file);
+		else
+			perror("Error: getline failed");
 	}
-	while ((c = fgetc(file)) != EOF)
-	{
-		if (read_bytes + 1 >= (ssize_t) buffer_size)
-		{
-			buffer_size += 128;
-			new_buffer = realloc(*line, buffer_size);
-			if (new_buffer == NULL)
-				return (-1);
-			*line = new_buffer;
-		}
-		(*line)[read_bytes++] = c;
-		if (c == '\n' || c == '\t' || c == '\r')
-			break;
-	}
-	if (read_bytes + 1 >= (ssize_t) buffer_size)
-	{
-		buffer_size += 1;
-		new_buffer = realloc(*line, buffer_size);
-		if (new_buffer == NULL)
-		{
-			return (-1);
-		}
-		*line = new_buffer;
-	}
-	(*line)[read_bytes] = '\0';
-	return ((read_bytes > 0) ? read_bytes : -1);
+
+	return read_bytes;
 }
 /**
  * _isdigit - function that checks for a digit
