@@ -24,16 +24,18 @@ void _sub(stack_t **stack, unsigned int line_n)
 */
 void _div(stack_t **stack, unsigned int line_n)
 {
+	int num;
+
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't div, stack too short\n", line_n);
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_n);
 		exit(EXIT_FAILURE);
-	}
-	if ((*stack)->n == 0)
+	} num = (*stack)->next->n;
+	if (num == 0)
 	{
-		fprintf(stderr, "L%u: division by zero\n", line_n);
+		fprintf(stderr, "L%d: division by zero", line_n);
 		exit(EXIT_FAILURE);
-	}
-	(*stack)->next->n /= (*stack)->n;
+	} num = num / (*stack)->n;
 	_pop(stack, line_n);
+	(*stack)->n = num;
 }
