@@ -7,15 +7,13 @@
  */
 void _pint(stack_t **stack, __attribute__ ((unused))unsigned int line_n)
 {
-	stack_t *num;
-
-	num = *stack;
-	if (!num)
+	if (*stack == NULL)
 	{
-		printf("L%d: can't pint, stack empty\n", line_n);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_n);
 		exit(EXIT_FAILURE);
-	}
-	printf("%d\n", num->n);
+        }
+
+	printf("%d\n", (*stack)->n);
 }
 /**
  * _pop - Removes the top element of the stack
