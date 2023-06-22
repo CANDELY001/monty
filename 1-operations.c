@@ -29,37 +29,30 @@ int is_num(char *s)
  */
 void _push(stack_t **stack, unsigned int line_number)
 {
-	int n;
+	int nm;
 	char *argument;
 	stack_t *new_node = malloc(sizeof(stack_t));
 
 	argument = strtok(NULL, " ");
-	if (!new_node)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		free_s(*stack);
-		exit(EXIT_FAILURE);
-	}
 	if (!argument)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		free(new_node);
-		free_s(*stack);
 		exit(EXIT_FAILURE);
 	}
+	nm = atoi(argument);
 	if (is_num(argument) == -1)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		free(new_node);
-		free_s(*stack);
 		exit(EXIT_FAILURE);
 	}
-	n = atoi(argument);
-	new_node->n = n;
+	if (new_node == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	new_node->n = nm;
 	new_node->prev = NULL;
 	new_node->next = *stack;
-	if (*stack != NULL)
-		(*stack)->prev = new_node;
 	*stack = new_node;
 }
 /**
