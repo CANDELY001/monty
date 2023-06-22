@@ -11,7 +11,7 @@ void _pint(stack_t **stack, __attribute__ ((unused))unsigned int line_n)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_n);
 		exit(EXIT_FAILURE);
-        }
+	}
 
 	printf("%d\n", (*stack)->n);
 }
