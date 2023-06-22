@@ -52,7 +52,7 @@ ssize_t _getline(char **line, size_t *line_length, FILE *file)
  * @c: parameter
  * Return: 1 (Success)
  */
-/* BY CHARIFA MASBAHI & NORA JEOUT*/
+/* BY CHARIFA MASBAHI*/
 int _isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
