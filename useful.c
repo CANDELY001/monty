@@ -18,7 +18,7 @@ ssize_t _getline(char **line, size_t *line_length, FILE *file)
 			perror("Error: getline failed");
 	}
 
-	return read_bytes;
+	return (read_bytes);
 }
 /**
  * _isdigit - function that checks for a digit
