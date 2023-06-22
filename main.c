@@ -44,8 +44,7 @@ int main(int ac, char **av)
 			fclose(file);
 			exit(EXIT_FAILURE);
 		} line_n++;
-	}
-	free(l);
+	} free(l);
 	free_s(stack);
 	fclose(file);
 	return (0);
