@@ -32,12 +32,12 @@ int main(int ac, char **av)
 		{
 			if (strcmp(opcode, command[i].opcode) == 0)
 			{
-				valid_op = 1;
+				validop = 1;
 				command[i].f(&stack, line_n);
 				break;
 			}
 		}
-		if (!valid_op)
+		if (!validop)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_n, opcode);
 			free_s(stack);
