@@ -41,8 +41,6 @@ int main(int ac, char **av)
 		if (command[i].opcode == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_n, opcode);
-			free_s(stack);
-			fclose(file);
 			exit(EXIT_FAILURE);
 		} line_n++;
 	} free(l);
