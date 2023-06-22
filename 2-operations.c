@@ -14,7 +14,8 @@ void _pint(stack_t **stack, __attribute__ ((unused))unsigned int line_n)
 	{
 		printf("L%d: can't pint, stack empty\n", line_n);
 		exit(EXIT_FAILURE);
-	} printf("%d\n", num->n);
+	}
+	printf("%d\n", num->n);
 }
 /**
  * _pop - Removes the top element of the stack
