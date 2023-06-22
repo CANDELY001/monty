@@ -42,6 +42,7 @@ typedef struct instruction_s
 void _push(stack_t **stack, unsigned int line_n);
 void _pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
 int is_num(char *s);
+int _isdigit(int c);
 void check(int ac, char *av[], FILE *file);
 void free_s(stack_t *head);
 ssize_t _getline(char **line, size_t *line_length, FILE *file);

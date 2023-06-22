@@ -6,7 +6,7 @@
  * @s: String
  * Return: 1 if the string is a number, 0 otherwise
  */
-int is_number(char *s)
+int is_num(char *s)
 {
 	int i;
 
@@ -16,7 +16,7 @@ int is_number(char *s)
 	{
 		if (s[i] == '-' && i == 0)
 			continue;
-		if (isdigit(s[i]) == 0)
+		if (_isdigit(s[i]) == 0)
 			return (0);
 	}
 	return (1);

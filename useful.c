@@ -47,4 +47,18 @@ ssize_t _getline(char **line, size_t *line_length, FILE *file)
 	(*line)[read_bytes] = '\0';
 	return ((read_bytes > 0) ? read_bytes : -1);
 }
+/**
+ * _isdigit - function that checks for a digit
+ * @c: parameter
+ * Return: 1 (Success)
+ */
+/* BY CHARIFA MASBAHI & NORA JEOUT*/
+int _isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+	{
+		return (1);
+	}
+	return (0);
+}
 
