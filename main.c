@@ -25,8 +25,11 @@ int main(int ac, char **av)
 	while (getline(&l, &line_len, file) != -1 && !feof(file))
 	{
 		opcode = strtok(l, " \n");
-		if (opcode == NULL || opcode[0] == '#')
+		if (!opcode)
+		{
+			line_n++;
 			continue;
+		}
 		for (i = 0; command[i].opcode != NULL; i++)
 		{
 			if (strcmp(opcode, command[i].opcode) == 0)
