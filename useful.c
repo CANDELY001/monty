@@ -8,7 +8,7 @@
  */
 ssize_t _getline(char **line, size_t *line_length, FILE *file)
 {
-ssize_t read_bytes = getline(line, line_length, file);
+	ssize_t read_bytes = getline(line, line_length, file);
 
 	if (read_bytes == -1)
 	{
