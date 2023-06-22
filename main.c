@@ -6,7 +6,7 @@
  * @av: parameter
  * Return: result
  */
-int main(int ac, char **av)
+int main(int ac, char *av[])
 {
 	FILE *file = fopen(av[1], "r");
 	int i;
@@ -24,7 +24,7 @@ int main(int ac, char **av)
 	check(ac, av, file);
 	while (getline(&l, &line_len, file) != -1 && !feof(file))
 	{
-		opcode = strtok(l, " \n\t");
+		opcode = strtok(l, " \n");
 		if (!opcode)
 		{
 			line_n++;
@@ -38,7 +38,7 @@ int main(int ac, char **av)
 				break;
 			}
 		}
-		if (command[i].opcode == NULL)
+		if (!command[i].opcode)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_n, opcode);
 			exit(EXIT_FAILURE);
