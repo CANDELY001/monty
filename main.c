@@ -9,7 +9,7 @@
 int main(int ac, char **av)
 {
 	FILE *file = fopen(av[1], "r");
-	int i;
+	int i, validop;
 	char *l = NULL;
 	char *opcode = NULL;
 	stack_t *stack = NULL;
@@ -26,21 +26,22 @@ int main(int ac, char **av)
 	{
 		opcode = strtok(l, " \n\t");
 		if (opcode == NULL || opcode[0] == '#')
-		{
-			line_n++;
 			continue;
-		}
+		validop = 0;
 		for (i = 0; command[i].opcode != NULL; i++)
 		{
 			if (strcmp(opcode, command[i].opcode) == 0)
 			{
+				valid_op = 1;
 				command[i].f(&stack, line_n);
 				break;
 			}
 		}
-		if (command[i].opcode == NULL)
+		if (!valid_op)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_n, opcode);
+			free_s(stack);
+			fclose(file);
 			exit(EXIT_FAILURE);
 		} line_n++;
 	}
