@@ -33,7 +33,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	char *argument;
 	stack_t *new_node = malloc(sizeof(stack_t));
 
-	argument = strtok(NULL, " \n\t ");
+	argument = strtok(NULL, " ");
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
