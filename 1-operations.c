@@ -6,20 +6,19 @@
  * @s: String
  * Return: 1 if the string is a number, 0 otherwise
  */
+
 int is_num(char *s)
 {
-	int i;
+	int i = 0;
 
-	if (!s)
-		return (0);
-	for (i = 0; s[i]; i++)
+	s = strtok(s, " \n");
+	if (s[0] == '-')
+		i++;
+	for (; s[i] != '\0'; i++)
 	{
-		if (s[i] == '-' && i == 0)
-			continue;
-		if (_isdigit(s[i]) == 0)
-			return (0);
-	}
-	return (1);
+		if (s[i] < '0' || s[i] > '9')
+			return (-1);
+	} return (0);
 }
 
 /**
