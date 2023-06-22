@@ -22,34 +22,36 @@ int is_num(char *s)
 /**
  * _push - Pushes an element to the stack
  * @stack: Pointer to the stack
- * @line_n: Line Number
+ * @line_number: Line Number
  */
-void _push(stack_t **stack, unsigned int line_n)
+void _push(stack_t **stack, unsigned int line_number)
 {
-	int number;
+	int n;
 	char *argument;
 	stack_t *new_node = malloc(sizeof(stack_t));
 
-	argument = strtok(NULL, " ");
-	if (argument == NULL)
+	argument = strtok(NULL, " \n\t");
+	if (!argument)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_n);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	number = atoi(argument);
+	n = atoi(argument);
 	if (is_num(argument) == -1)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_n);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	if (new_node == NULL)
+	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	new_node->n = number;
+	new_node->n = n;
 	new_node->prev = NULL;
 	new_node->next = *stack;
+	if (*stack != NULL)
+		(*stack)->prev = new_node;
 	*stack = new_node;
 }
 /**
