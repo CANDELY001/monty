@@ -39,7 +39,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /* Functions */
-void _push(stack_t **stack, unsigned int line_number);
+void _push(stack_t **stack, unsigned int line_n);
 void _pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
 int is_num(char *s);
 void check(int ac, char *av[], FILE *file);

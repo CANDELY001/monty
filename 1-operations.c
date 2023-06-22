@@ -24,7 +24,7 @@ int is_num(char *s)
  * @stack: Pointer to the stack
  * @line_n: Line Number
  */
-void push(stack_t **stack, unsigned int line_n)
+void _push(stack_t **stack, unsigned int line_n)
 {
 	int number;
 	char *argument;
