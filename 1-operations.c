@@ -6,15 +6,18 @@
  * @s: String
  * Return: 1 if the string is a number, 0 otherwise
  */
-int is_num(char *s)
+int is_number(char *s)
 {
-	if (*s == '-')
-		s++;
-	while (!*s)
+	int i;
+
+	if (!s)
+		return (0);
+	for (i = 0; s[i]; i++)
 	{
-		if (*s < '0' || *s > '9')
+		if (s[i] == '-' && i == 0)
+			continue;
+		if (isdigit(s[i]) == 0)
 			return (0);
-		s++;
 	}
 	return (1);
 }
