@@ -24,8 +24,8 @@ int main(int ac, char **av)
 	check(ac, av, file);
 	while (_getline(&l, &line_len, file) != -1 && !feof(file))
 	{
-		opcode = strtok(l, " \n");
-		if (opcode == NULL)
+		opcode = strtok(l, " \n\t");
+		if (opcode == NULL || opcode[0] == '#')
 		{
 			line_n++;
 			continue;
