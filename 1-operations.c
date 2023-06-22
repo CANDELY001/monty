@@ -61,8 +61,8 @@ void _push(stack_t **stack, unsigned int line_number)
  */
 void _pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
-	stack_t *current_node;
+	stack_t *curr;
 
-	for (current_node = *stack; current_node != NULL; current_node = current_node->next)
-		printf("%d\n", current_node->n);
+	for (curr = *stack; curr != NULL; curr = curr->next)
+		printf("%d\n", curr->n);
 }
