@@ -7,17 +7,16 @@
 
 void _swap(stack_t **stack, unsigned int line_n)
 {
-	stack_t *nm;
-	int change;
+	int tmp;
 
-	nm = *stack;
-	if (nm == NULL || nm->next == NULL)
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		printf("L%d: can't swap, stack too short\n", line_n);
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_n);
 		exit(EXIT_FAILURE);
-	} change = nm->n;
-	nm->n = nm->next->n;
-	nm->next->n = change;
+	}
+	tmp = (*stack)->n;
+	(*stack)->n = (*stack)->next->n;
+	(*stack)->next->n = tmp;
 }
 /**
  * _add - adds the top two elements of the stack.
