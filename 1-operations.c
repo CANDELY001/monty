@@ -34,22 +34,27 @@ void _push(stack_t **stack, unsigned int line_number)
 	stack_t *new_node = malloc(sizeof(stack_t));
 
 	argument = strtok(NULL, " \n\t ");
-	if (!argument)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	n = atoi(argument);
-	if (is_num(argument) == -1)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
+		free_s(*stack);
 		exit(EXIT_FAILURE);
 	}
+	if (!argument)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		free(new_node);
+		free_s(*stack);
+		exit(EXIT_FAILURE);
+	}
+	if (is_num(argument) == -1)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		free(new_node);
+		free_s(*stack);
+		exit(EXIT_FAILURE);
+	}
+	n = atoi(argument);
 	new_node->n = n;
 	new_node->prev = NULL;
 	new_node->next = *stack;
